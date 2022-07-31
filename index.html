@@ -270,11 +270,11 @@
 
 
     d3.json(world_data_directory, function(json) {
-        var income_yScale = d3.scaleLinear()
+        var trans_yScale = d3.scaleLinear()
                 .domain([0, d3.max(json.features, function(d) { return d.average.Total;})])
                 .range([h - padding, 0 + padding])
-        var income_yAxis = d3.axisLeft()
-            .scale(income_yScale)
+        var trans_yAxis = d3.axisLeft()
+            .scale(trans_yScale)
         
         var mapProject = d3.geoMercator()
                 .scale(300)
@@ -420,7 +420,7 @@
                     return xScale(i);
                 })
                 .y(function (d) {
-                 return income_yScale(d);
+                 return trans_yScale(d);
              });
 
 
@@ -863,7 +863,7 @@
             .style("font-family", "sans-serif")
             .style("font-size", "0.7em")
             .attr("transform", "translate(" + (padding + 40) + "," + 0 + ")")
-            .call(income_yAxis)
+            .call(trans_yAxis)
 
        
         svg3.append("g")
