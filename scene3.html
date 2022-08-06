@@ -75,35 +75,36 @@
 
   
     <div class="grid-long-container">
-    <!-- <div id="Scene1" class="grid-container-s1">
+    <div id="Scene1" class="grid-container-s1">
         <div>
-                <h1>Scene 1. The Most Recent Five Olympic Summer Games performance by Country</h1>
+                <h1>The Most Recent Five Olympic Summer Games performance by Country</h1>
+                <h1>UK wins most medals in Europe</h1>
                 This scene shows the of worldwide Olympic performance by country based on the average number of medals from games from 2004-2020<br/>
-                The weight of color indicates the performance of countries.  The legend at the right-bottom corner of the first scene shows the number of average medals indicates represents by each color.  I also used an annotation to show users which country has best performance. The title and subtitle in the left-upper corner shows the meaning of this heat map and the mouse over option to further explore.<br/><br/>
+                The weight of color indicates the performance of countries.  The legend at the right-bottom corner of the first scene shows the number of average medals indicates represents by each color.  I also used an annotation to show users which country has best performance. The title and subtitle in the left-upper corner shows the meaning of this heat map and the mouse over option to further explore in the SELF EXPLORATION tab.<br/><br/>
                 <i>Data used for the scene comes from Olympic offical website and data are saved as csv files.</i><br/>
         </div>
-    </div> -->
-     <!--    <div class='grid-item' id="Plot0"></div>
+    </div>
+        <div class='grid-item' id="Plot0"></div>
     </div>
     <div class="grid-container">
             <div id="Scene2" class="grid-item">
         <div>
-                <h1>Scene 2. Medals distribution</h1>
+                <h1>Medals distribution</h1>
                 This stacked bar chart shows the medals (i.e., Gold, Silver, and Bronze) distributions.  This bar chart not only displays the medals distributions by medal type, but also shows number of medals by year.  <br/>
         </div>
-    </div> -->
+    </div>
         <div id="Scene3" class="grid-item">
         <div>
-                <h1>Scene 3. Performance by fields</h1>
+                <h1>Performance by fields</h1>
                 The third scene shows the performance based on number of medals at each of the five fields.  If a user selected a country from the first scene, the plot would show the data based on the most recent five games.  Once the user selects a specific game year from the second scene, the plot will display based on the data of selected game year.   To avoid confusing, an annotation is provided to display current selected game year and country.<br/>
         </div>
     </div>
-        <!-- <div class='grid-item' id="Plot1"></div> -->
+        <div class='grid-item' id="Plot1"></div>
         <!-- <div class='grid-item' id="Plot2"></div> -->
         <div class='grid-item' id="Plot3"></div>
         <div id="my_dataviz"></div>
-        <!-- <div class='grid-item' id='Plot4'></div> -->
-    </div>
+        <!-- <div class='grid-item' id='Plot4'></div>
+    </div> -->
     <div id="tooltip" class="hidden">
         <p><span id="value"> </span></p>
     </div>
@@ -222,14 +223,14 @@
         .attr("width", w)
         .attr("height", h)
 
-    makeTitle(svg2, "Medals in The Most Recent Games","Games from 2004-2020  Country: USA")
+    makeTitle(svg2, "Medals in The Most Recent Games","Games from 2004-2020  Country: UK")
     makeTitle(svg0, "Olympic Performance by Country", "Most Recent Five Years' Performance")
 
     svg2.selectAll("g").filter(".annotation").remove()
     const annotations = [
         {
         note: {
-          title:"Year: 2004-2020" + "\n" + "Country: USA",
+          title:"Year: 2004-2020" + "\n" + "Country: UK",
 
           wrap: 150, 
           padding: 10 
@@ -258,7 +259,7 @@
     .style("text-anchor", "left")
     .style("opacity", 0.7)
     .style("font-family", "sans-serif")
-    .text("Mouse over a country to trigger the bottom scenes");
+    // .text("Mouse over a country to trigger the bottom scenes");
 
     makeLegend(svg0, colorlegend, color)
     makeLegend(svg3, colorlegend, color)
@@ -309,16 +310,16 @@
         const annotations = [
             {
             note: {
-              title: "United States Wins the Most Olympic Medals Accross the Most Recent Five Games",
+              title: "UK Wins the Most Olympic Medals in Europe",
               wrap: 150,  // try something smaller to see text split in several lines
               padding: 10   // More = text lower
               
             },
             color: ["#852170"],
-            x: mapProject([-97.922211, 39.381266])[0],
-            y: mapProject([-97.922211, 39.381266])[1],
+            x: mapProject([-2.36967, 54.237933])[0],
+            y: mapProject([-2.36967, 54.237933])[1],
             dy: 30,
-            dx: -30
+            dx: -10
           }
         ]
 
@@ -382,35 +383,35 @@
                     .style("top", (d3.event.pageY - 30) + "px")
                     .select("#value")
                     .html("<p>Country: " + d.properties.name + "</p><p>Average Models: " + d.average.Total + "</p>")
-            var update_data = calc_data(d.fields)
+            // var update_data = calc_data(d.fields)
 
-            update_svg2(update_data);
-            svg2.selectAll("g").filter(".annotation").remove()
-            const annotations = [
-                {
-                note: {
-                  title:"Year: 2004-2020" + "\n" + d.properties.name,
+            // update_svg2(update_data);
+            // svg2.selectAll("g").filter(".annotation").remove()
+            // const annotations = [
+            //     {
+            //     note: {
+            //       title:"Year: 2004-2020" + "\n" + d.properties.name,
 
-                  wrap: 150, 
-                  padding: 10 
+            //       wrap: 150, 
+            //       padding: 10 
                   
-                },
-                color: ["black"],
-                x: 300,
-                y: 238,
-                dy: 80,
-                dx: -180
-                }
-            ]
+            //     },
+            //     color: ["black"],
+            //     x: 300,
+            //     y: 238,
+            //     dy: 80,
+            //     dx: -180
+            //     }
+            // ]
 
            
-        const makeAnnotations = d3.annotation()
-          .annotations(annotations)
+        // const makeAnnotations = d3.annotation()
+        //   .annotations(annotations)
 
-          svg2.append("g")
-          .style("opacity", 1)
-          .attr("class", "annotation")
-          .call(makeAnnotations)
+        //   svg2.append("g")
+        //   .style("opacity", 1)
+        //   .attr("class", "annotation")
+        //   .call(makeAnnotations)
                                 
 
             
@@ -440,15 +441,15 @@
                 dataBar.push({"group": groupName, "Gold": d.medals.Gold[i], "Silver": d.medals.Silver[i], "Bronze": d.medals.Bronze[i], "Total": d.medals.Total[i]})
               }
 
-            svg.selectAll("rect").remove()
-            svg.selectAll("text").filter(".Title").remove()
-            makeTitle(svg, "Medals in The Most Recent Games","Games from 2004-2020  Country: " + d.properties.name)
+            // svg.selectAll("rect").remove()
+            // svg.selectAll("text").filter(".Title").remove()
+            // makeTitle(svg, "Medals in The Most Recent Games","Games from 2004-2020  Country: " + d.properties.name)
 
-            svg2.selectAll("text").filter(".Title").remove()
-            makeTitle(svg2, "Olympic Performance by Fields","Country: " + d.properties.name)
-            draw(svg, dataBar, dataBarYear, d.properties.name)
+            // svg2.selectAll("text").filter(".Title").remove()
+            // makeTitle(svg2, "Olympic Performance by Fields","Country: " + d.properties.name)
+            // draw(svg, dataBar, dataBarYear, d.properties.name)
             d3.select("#annotation")
-                .style("opacity", 0)    
+                .style("opacity", 1)    
             })
             
             d3.select("#tooltip").classed("hidden", false)
@@ -456,7 +457,7 @@
             var stackSampleDataYear = [];
             for (var i = 0, len = json.features.length; i < len; ++i) {
             // console.log(json.features[i])
-                if (json.features[i].properties.name == "USA") {
+                if (json.features[i].properties.name == "England") {
                      for (let j = 0; j < 5; j++) {
                         var groupName = j * 4 + 2004
                         stackSampleData.push({"group": groupName, "Gold": json.features[i].medals.Gold[j], "Silver": json.features[i].medals.Silver[j], "Bronze": json.features[i].medals.Bronze[j], "Total": json.features[i].medals.Total[j]})
@@ -509,7 +510,7 @@
                 .attr("transform", "translate(45, 0)")
                 .call(d3.axisLeft(y));
 
-            makeTitle(svg, "Medals in The Most Recent Games","Games from 2004-2020  Country: USA")
+            makeTitle(svg, "Medals in The Most Recent Games","Games from 2004-2020  Country: UK")
 
             function draw(svg, data, dataYear, country="") {
                 console.log(dataYear)
@@ -676,7 +677,7 @@
                         .attr("stroke", "grey")
                       .on("mouseover", mouseover)
                       .on("mouseleave", mouseleave)
-                    svg.selectAll("g").filter(".annotation").remove()
+                    // svg.selectAll("g").filter(".annotation").remove()
                     var maxYearIdx = -1;
                     var maxMedals = -1;
 
@@ -714,7 +715,7 @@
                           .call(makeAnnotations)
                     }
                 }
-            draw(svg, stackSampleData, stackSampleDataYear, "USA")
+            draw(svg, stackSampleData, stackSampleDataYear, "England")
 
             geos.on("mouseout", function(d) {
                 d3.select(this)
@@ -738,7 +739,7 @@
 
         for (var i = 0, len = json.features.length; i < len; ++i) {
             // console.log(json.features[i])
-            if (json.features[i].properties.name == "USA") {
+            if (json.features[i].properties.name == "England") {
                 sample_data = calc_data(json.features[i].fields);
             }
         }
